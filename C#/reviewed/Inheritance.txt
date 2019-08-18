@@ -1,0 +1,49 @@
+A kind of relationship between two classes that allows one to inherit code from the other.  Is-A
+    Code re-use
+    Polymorphic behavior
+
+syntax
+    public class <SUBCLASS> : <SUPERCLASS>
+
+props
+    reusability, easy to understand
+cons
+when abused
+    large hierarchies 
+    fragility 
+    tightly coupling
+
+
+note:base class constructor is not inherited
+     public Vehicle(string:registrationNumber)
+
+
+    
+     public Car(string:registrationNumber) : base(registrationNumber)
+        //invoke parent constructor
+    public GiftCard(string title) : base(title)
+
+Upcasting, Downcasting
+
+
+    Circle:Shape
+
+    derive to base(Upcasting)
+        var circle = new Circle();
+        Shape shape = circle;           // can only use shape's members, but circle and shape reference to the same memory
+
+    base to derive(Downcasting)
+        Shape shape  = new Circle();
+        Circle anotherCircle = (Circle)shape;           // ie. parameter says object, cast to button to access button class members
+
+
+    InvalidCastException
+        Car car = (Car) shape;
+
+
+
+Check if safe to cast
+        //return null instead of throwing exception
+        obj as Car;
+Check type
+          obj is Car;

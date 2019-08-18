@@ -1,0 +1,17 @@
+
+
+
+Boxing
+    The object class is the base of all classes in .NET Framework.
+    The process of converting a value type instance to an Object Reference
+        int number = 10;
+        object obj = number;
+
+        //or
+        object obj = 10;
+            which creates an object in the heaps and a reference pointing to it on the stack.
+Unboxing
+    object obj = 10;
+    int  number = (int)obj;
+
+    Un/Boxing Performance penalty caused by creating extra object, should avoid if possible

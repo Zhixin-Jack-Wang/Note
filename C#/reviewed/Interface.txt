@@ -1,0 +1,50 @@
+A language construct that is similar to class(syntax wise) but fundamentally different
+increase testability and extendability of your applications
+
+Convention: start with 'I'
+no implementation, no access modifier
+use to build loosely-coupled applications
+
+tightly depend
+    analogy: restaurant needs a chef to restaurant needs John
+
+syntax
+    public interface ITaxCalculator
+    {
+        int Calculator();
+    }
+
+    public class TaxCalculator : ITaxCalculator{
+        
+    }
+
+
+
+Unit Test
+    Need to isolate the test class, therefore decouple dependency using interface 
+
+    ShippingCalculator to IShippingCalculator in the class 
+
+extendability
+    open close principle(open for extension, close for modification)
+        change the behavior by extending the programme without changing the code
+
+    practical use
+        improve current algorithm(with better algorithm in the future)
+
+
+
+Interface is a contract
+
+Interface and Inheritance
+
+    One class can implement multiple interfaces but cant inherit multiple classes
+
+Interface and Polymorphism
+    private readonly IList<INotificationChannel> _notificationChannels;
+    //in constructor
+    _notificationChannels = new List<INotificationChannel>();
+    //in method
+    foreach(var channel in _notificationChannels)
+        channel.Send(new Message());
+

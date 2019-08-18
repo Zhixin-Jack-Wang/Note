@@ -1,0 +1,21 @@
+A kind of relationship between classes that allows one to contain the other. ie. Has-a
+    Benefits:
+        Code-Reuse
+        A mean to implement loosely  coupled classes
+        Flexibility 
+    cons:
+        sometimes hard to understand
+
+example, not need to change the method of logger such as logger.log() if logger class is modified
+ public class Installer
+ {
+     private Logger _logger;
+
+     public Installer(Logger logger){
+         _logger = logger; 
+     }
+ }
+
+
+ dog    --walkable
+ human  _/

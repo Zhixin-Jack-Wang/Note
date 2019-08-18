@@ -1,0 +1,10 @@
+Instance Variables(Non-Static Fields)
+    Unique to each instance
+Class Variables(Static Fields)
+    Exactly one copy of this variable in existence
+Local Variables
+    Scope, where the variable is declared
+Parameters
+    In method signature
+
+Fields in general(excluding local variables and parameters)

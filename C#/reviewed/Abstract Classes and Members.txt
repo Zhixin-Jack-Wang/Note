@@ -1,0 +1,29 @@
+Indicates that a class or a member is missing implementation
+provide common behavior while forcing other developers to follow your design
+    -method cannot have an implementation, containing class must declared as abstract too
+    -cannot be instantiated
+    -fields cannot be abstract
+    -abstract members cannot be private
+    -can contains constructors, non abstract methods, fields
+    -unlike interface, can have access modifier
+            peripheral abilities,      core identities
+    eg.
+        in class Shape //base class
+        public abstract class Shape{
+            public abstract void Draw();
+        }
+        in class Circle // derived
+            public override void Draw(){}
+
+            must implement all abstract members
+
+
+//don't use
+Sealed Modifier
+    Prevent derivation of classes or overriding of methods
+        public sealed class Circle : Shape{}
+        public sealed override void Draw(){}
+    why? slightly faster cuz of some run-time optimizations
+
+
+

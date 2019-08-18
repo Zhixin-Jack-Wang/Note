@@ -1,0 +1,61 @@
+can declare field outside constructors like:
+    List<Order> Orders = new List<Order>();
+
+readonly List<Order> Orders = new List<Order>(); // only declared once
+    prevent redeclare
+
+Setter
+    setter/getter can provide logic when accessing fields
+         
+         public void SetBirthdate(DateTime birthdate) {
+            _birthdate = birthdate;
+        }
+Property   //less code,   Pascal Case
+        public DateTime Birthdate {
+            get { return _birthdate; }
+            set { _birthdate = value; }
+        }
+
+        //auto-implement, shortcut prop 
+        public DateTime Birthdate{get;set;}
+
+        //set once, at the constructor
+        public Person(DateTime date){
+            Birthdate = date;
+        }
+        public DateTime Birthdate(get;private set;)
+
+        //property with dependency, place it at the bottom
+        public int Age
+        {
+            get
+            {
+                var timespan = DateTime.Today - Birthdate;
+                var years = timespan.Days / 365;
+                return years;
+            }
+        }
+
+
+Indexer
+A way to access elements in a class that represents a list of values.
+
+    search by key use Dictionary
+                        |- type of indexer
+    public string this[string Key]
+    {
+        get{...}
+        set{...}
+    }
+    e.g.
+     public string this[string key]
+        {
+            get
+            {
+                return _dictionary[key];
+            }
+            set
+            {
+                _dictionary[key] = value;
+            }
+        }

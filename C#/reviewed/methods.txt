@@ -1,0 +1,57 @@
+Params Modifier
+    public static int Add(params int[] nums) 
+
+        Calculator.Add(1,2,3,4,5);
+
+
+
+
+
+reduce redundancy/throw exception
+    instead of 
+        public void Move(int x, int y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
+
+        public void Move(Point newlocation) {
+            this.X = newlocation.X;
+            this.Y = newlocation.Y;
+        }
+
+        use
+
+        public void Move(Point newlocation) {
+                if (newlocation == null)
+                throw new ArgumentNullException("newlocation");
+            Move(newlocation.X,newlocation.Y);
+        }
+
+
+for each
+    foreach(int num in nums)
+
+use out params  
+                int number;
+            var result = int.TryParse("abc",out number);
+
+
+Method Overriding
+    Modifying the implementation of an inherited Method
+
+    //In parent class
+        public virtual void <METHOD>(){
+
+        }
+
+    //In child class
+        public override void <METHOD>(){
+            //refer to parent Method
+            base.<METHOD>();
+        }
+
+
+Polymorphism        // many forms
+    shape.draw()        //call specific method in specific shape, depending on what object we have at run time
+

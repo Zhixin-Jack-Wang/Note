@@ -1,0 +1,15 @@
+in context.js
+    const CONTEXT  = React.createContext();
+
+    return(
+        <CONTEXT.Provider value = {state}>
+            {this.props.children}
+        <CONTEXT.Provider>
+    )
+
+
+in component
+    <Context.consumer >
+        {value => ()}
+
+    </Context.consumer>

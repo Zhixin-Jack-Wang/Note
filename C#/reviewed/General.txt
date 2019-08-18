@@ -1,0 +1,133 @@
+In Visual Studio
+    f9 to add breakpoint
+    ctrl tab to go to class
+    alt enter to move class outside
+     f11 go into the method continue execution with f10
+
+
+
+Types in C#
+    Value Types
+        stored on the stack(a limited of amount of memory 
+        is allocated to each thread of your programme,
+        this space is used to stored simple values)
+
+            all primitive types: byte, int, float, char, bool
+            the struct type
+        values stored on the stack has a short lifetime, as soon as they go out of scoped they got kicked out of the stack by the run time
+    
+    
+    Reference Types
+        store in the heap with larger amount of memory, used to store object requires a longer lifetime
+            
+            any class
+Data Type
+String : string phrase = "Giraffe Academy"
+Character: char grade = 'A'
+Number: int, float, double, decimal
+            precise ------>
+Boolean: bool isMale = true
+
+
+String
+    methods 
+        .ToUpper
+        .ToLower
+        .Contains
+        [<index>]
+        .IndexOf
+        .Substring()
+    convert to Number
+        Convert.ToInt32(<number string>);
+        Convert.ToDouble(<number string>);
+
+
+Number
+    5/2 = 2 
+    5/2.0 = 2.5
+    Math.abs
+    Math.Pow(3,2) = 9
+    Math.Round
+
+Array
+    int [] luckyNumbers = {4, 8, 15, 16, 23, 42};
+
+    //another way to declare
+    string[] friends = new string[5];
+    friends[0] = ....
+
+
+    Multi-Dimensional Array
+    int [,] numberGrid = {
+        {1,2},
+        {3,4},
+        {5,6}
+    };
+
+    //another way to declare, [rows,column]
+    int[,] myArray = new int[2,3]{...,...};
+
+    Jagged
+        int[][] jgArr = { new int[] { 3, 2, 1 }, new int[] { 1, 2 }, new int[] { 1 } };
+
+        With Multi-D
+        int[][,] ...
+
+        int[][] jagged_arr = new int[4][]
+        jagged_arr[0] = new int[] {1, 2, 3, 4};
+
+Exception
+    try{
+        <code>
+    }
+    catch{
+        ...
+    }
+    catch(Exception e){
+      Console.Write(e.Message);
+    }
+    catch(DivideByZeroException e){
+        ...
+    }
+
+    finally{
+        //gonna be executed no matter what
+    }
+
+Enum    // assign names to constant
+    enum : <TYPE>  {<NAME>,...} 
+        Enum.getName(typeof(<ENUMTYPE>),<NUMBER>)
+        Enum.getNames
+            
+            Day weekdays;
+            Enum.TryParse<Day>("1", out weekdays);
+            Console.WriteLine(weekdays);    //Mon
+                //bad when use to implement new support, cuz recompiling    
+    
+
+
+String Interpolation
+    Console.WriteLine("name: {0}","Jack");
+    //escape braces
+    Console.WriteLine("{{{0}}}", "Jack); //output: {Jack}
+
+
+Access Modifier
+Public
+Private
+Protected
+Internal
+Protected Internal
+
+control visibility of members of the class
+
+Public
+    accessible everywhere
+Private
+    only accessible from the class
+Protected
+    only accessible from the class and its derived classes
+internal 
+    class library
+
+

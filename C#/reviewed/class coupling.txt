@@ -1,0 +1,12 @@
+How interconnected classes and subsystems are
+    tightly coupled
+        change affects many
+    loosely coupled
+        isolate changes
+
+
+Relationship
+    Inheritance
+
+    Composition
+        less coupling

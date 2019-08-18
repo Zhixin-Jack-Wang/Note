@@ -1,0 +1,49 @@
+Dependency: react-redux redux redux-thunk
+    in Component
+        {connect} from react-redux
+        
+    in App.js
+        {Provider} from react-redux
+
+    in rootReducer
+        {combineReducers} from redux
+
+    in store
+        thunk from "redux-thunk"
+        {createStore, applyMiddleware, compose} from redux
+
+
+
+1. Create a folder called actions
+2. Define action types
+    syntax
+        export const <NAME> = () => dispatch => {
+            ...
+            dispatch {
+                type:...,
+                payload:...
+            }
+        }
+3.Define reducers and combine reducers
+    export const <NAME> = (state, action) => {
+
+    }
+4.Define Store
+
+
+5.Set up provider
+    <Provider store={store}>
+        ...
+    </Provider>
+
+
+6.Connect Component
+    const mapStateToProps = state => ({})
+    export default connect(mapStateToProps, { <ACTION> })(<COMPONENT);
+
+
+7.Check prop types
+    <COMPONENT>.propTypes = {
+        <PROPNAME> : PropTypes.<TYPE>.isRequired,
+                         ...
+    }

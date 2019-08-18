@@ -1,0 +1,13 @@
+//use state overwrite the state instead of merging state
+  therefore can have multiple instance
+const [] = useState()
+
+//access context 
+const context = useContext(CONTEXT);
+
+//take a function as an argument and will execute at the end of each rendering cycle
+    [DEPENDENCIES] OF FUNCTION rerun function when dependency changes, no dependency no rerun 
+useEffect(()=>{},[])
+
+// another state management hook, use reducer hook
+const [currentState, dispatch] = useReducer(reducer, initialState);

@@ -1,0 +1,63 @@
+Building block of applications
+
+Application Layers
+    Presentation           
+    Business Logic/Domain
+    Data Access/ Persistence
+        Blog Analogy
+            PostView
+            Post
+            PostRepository
+
+Data:fields
+Behavior:methods
+
+Object
+    An instance of class
+
+Naming Convention
+    Pascal Case: first letter of every word should be upper
+    Camel Case: first lower
+
+    method/class/Prop:Pascal
+    variable name : camel
+
+    this.Name =  name;
+
+Create Objects
+    Person person = new Person();
+    var person = new Person();
+
+Class Members
+    Instance: accessible from an Object
+        person.Introduce();
+    Static: accessible from the class
+        Console.WriteLine();
+
+Constructor Overloading
+    methods with the same name but different signature(what uniquely identify the method,the return type, name, type and number of its parameters)
+    make initialization easier
+
+    In Default Constructor reference type set to NULL without initialization 
+
+    !!!!minimal use
+
+       public Customer()
+        {
+            Orders = new List<Order>();
+        }
+        public Customer(int id) : this()
+        {
+            this.Id = id;
+        }
+        public Customer(int id, string name) : this(id)
+        {
+            this.Id = id;
+            this.Name = name;
+        }
+
+Object initialization 
+    var person =  new Person(){
+        FirstName = "Mosh",
+        LastName = "Hamedani"
+    }

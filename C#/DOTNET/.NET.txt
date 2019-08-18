@@ -1,0 +1,21 @@
+Separation of concern
+    Model
+        Data and business logic
+    View
+        presentation and UI
+    Controller
+        user actions and control flow
+    
+
+    A useful way to organize code markup ad control flow
+design to help you build and maintain better software
+
+
+ASP.NET Routing
+    Mapping of web request to controller actions
+    
+    URL Patterns
+        {CONTROLLER}/{ACTION}/{ID}
+            e.g. home/index
+    
+        APP_START ROUTECONFIG

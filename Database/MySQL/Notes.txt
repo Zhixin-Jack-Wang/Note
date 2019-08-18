@@ -1,0 +1,86 @@
+
+
+SELECT DISTINCT CITY FROM STATION WHERE MOD(ID,2)=0;
+
+SELECT COUNT(CITY) - COUNT(DISTINCT CITY) FROM STATION
+
+#Weather Observation Station 5
+Select City, Length(City) From Station Order by Length(City), CITY LIMIT 1;
+Select City, Length(City) From Station Order by Length(City) DESC, City Limit 1;
+
+#Weather Observation Station 6,7
+SELECT DISTINCT city FROM station WHERE city REGEXP "^[aeiou].*";
+SELECT DISTINCT CITY FROM STATION WHERE CITY REGEXP ".*[aeiou]$"
+SELECT CITY FROM STATION WHERE CITY REGEXP "^[aeiou].*[aeiou]$"
+
+#Higher Than 75 Marks
+SELECT NAME FROM STUDENTS WHERE MARKS >75 ORDER BY RIGHT(NAME,3), ID ASC
+
+
+？？？#Binary Tree Nodes
+SELECT 
+N, IF(P IS NULL,'Root',IF((SELECT COUNT(*) 
+      FROM BST
+      WHERE P=B.N)>0,'Inner','Leaf'))
+FROM 
+BST AS B ORDER BY N;
+
+WHERE STH BETWEEN STH 
+
+--TRUNC()
+
+      eg. TRUNC(3.12) = 3
+          TRUNC(3.125,2) = 3.12
+          ROUND(3.125,2) = 3.13
+ 
+--(CASE WHEN THEN ELSE END)
+SELECT
+  th.id,
+  th.heads,
+  bh.legs,
+  th.arms,
+  bh.tails,
+  CASE WHEN th.heads > th.arms or bh.tails > bh.legs
+    THEN 'BEAST'
+    ELSE 'WEIRDO'
+  END as species
+  
+FROM top_half th
+
+INNER JOIN bottom_half bh
+  on bh.id = th.id
+
+ORDER BY species
+
+
+
+
+--CUBE ROOT AND NATURAL LOGARITHM
+SELECT CBRT(d.number1) AS cuberoot, 
+       LN(d.number2) AS logarithm
+FROM decimals AS d
+
+
+--GROUP BY <> HAVING <>
+
+
+
+-- cast ::
+select player_name,
+       games,
+       round(hits::numeric / at_bats, 3)::text as batting_average
+from yankees
+where at_bats > 100
+order by 3 desc
+
+
+SELECT 
+  j.job_title,
+  ROUND(AVG(j.salary),2)::FLOAT as average_salary,
+  COUNT(p.id) as total_people,
+  ROUND(SUM(j.salary),2)::FLOAT as total_salary
+  FROM people AS p
+    JOIN job AS j ON p.id = j.people_id 
+  GROUP BY j.job_title
+  ORDER BY average_salary DESC
+

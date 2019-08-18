@@ -1,0 +1,11 @@
+Encapsulation/Information Hiding
+    separation of concerns
+    hide implementation details and show what they can do
+    encapsulate data and behavior
+
+
+    in practice
+        Define fields as private
+        Provide Setter and Getter method
+Inheritance
+Polymorphism
