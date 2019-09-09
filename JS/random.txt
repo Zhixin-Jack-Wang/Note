@@ -1,2 +1,0 @@
-{<COND> && STH} = if(COND) then
-{<COND> || STH} = if(!COND) then

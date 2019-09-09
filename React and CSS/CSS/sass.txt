@@ -1,0 +1,26 @@
+######mixins
+ @mixin NAME(PARAMS) {...}
+.TARGET { @include NAME(VALUE); 
+
+@mixin tablet{
+    @media (min-width:768px){
+        @content
+    }
+}
+
+######variables
+$variable:VALUE;
+
+######extends
+%message-shared{
+  border: 1px solid #ccc
+  padding: 10px
+  color: #333
+}
+.success{
+  @extend %message-shared
+  border-color: green
+}
+
+######math operators
+ +, -, *, / 

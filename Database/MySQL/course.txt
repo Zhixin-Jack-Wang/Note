@@ -1,0 +1,57 @@
+<> not equal operator
+
+#compare date
+birth_date > '1992-12-14'
+
+#underscore
+ LIKE '_y' matches single character like 'gy'
+
+#REGEXP
+    LIKE '%AVENUE%' === REGEXP 'AVENUE'
+
+    ^ Beginning of a string (eg. REGEXP '^rose')
+    $ End of a string   (eg. REGEXP 'son$')
+    | Or (eg.REGEXP 'AVENUE|TRAIL' matches both )
+    [] One of the character from the square bracket (eg. '[ame]i','[a-h]e')
+    . Any character
+    * Any number of times
+
+#IS NULL
+WHERE phone IS NULL
+WHERE phone IS NOT NULL
+
+#ORDER BY
+    //sort by state first then sort by first_name
+    ORDER BY state DESC,first_name   
+    //1,2 corresponding to first and second selected column
+    SELECT first_name, last_name
+    ...
+    ORDER BY 1,2            
+
+#LIMIT CLAUSE
+    //show top 3 records
+    LIMIT 3
+    //show 7-8 records, offset is 6
+    LIMIT 6,2
+
+#ALIAS
+    SELECT ...
+    FROM customers as c
+    JOIN order as o
+    ON ...
+
+#JOIN across different databases
+    //only prefix the one you are not using
+    sql_store.order_items
+
+#SELF-JOIN
+    SELECT
+	e.first_name, m.first_name 
+    FROM
+        employees e
+    JOIN
+        employees m
+    ON 
+        e.reports_to = m.employee_id
+
+#Compound Join Conditions

@@ -1,0 +1,60 @@
+*,
+*::,before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+######flex
+align-content     //applies to multiple flexed lines
+parent{
+    display:flex;
+}
+child{
+    flex:1;         //take up one unit of space
+}
+flex:<flex-growth><flex-shrink><flex-basis>
+
+######grid
+display:grid;
+//same apply to rows
+grid-template-columns: 5% 1fr 1fr 1fr 5%;
+grid-column:2;
+//short-hand grid-column: 1/3 
+grid-column-start:1;
+grid-column-start:3;
+//grid-template-areas
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "pic1 pic2"
+    "pic3 pic3";
+  & > .pics {
+  }
+  .pic1 {
+    grid-area: pic1;
+  }
+  .pic2 {
+    grid-area: pic2;
+  }
+  .pic3 {
+    grid-area: pic3;
+  }
+//in parent
+justify-items: center/start/end;
+align-items:center;
+//in child
+align-self:center;
+justify-self:center;
+//1 300px column
+grid-template-columns: repeat(1, 300px);
+//responsive column counts
+grid-template-columns: repeat(auto-fill, 300px);
+//no extra columns generated
+grid-template-columns: repeat(auto-fit, 300px);
+//min and max width of pic
+grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+//add gap between columns
+grid-column-gap:3px;
+

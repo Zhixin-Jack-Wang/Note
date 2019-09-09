@@ -1,0 +1,15 @@
+Transition
+
+    1.TransitionGroup
+    const transitions = useTransition(items,key,state);
+    //state example {from:{transform:'translate(xxx,xx,xxx)'}, enter:...,leave...}
+      key example item=>item.key
+      items example [{text:123,key:1},{text:345,key2}]
+
+    return transitions.map({(item,props,key)}=><animated.div style={props}>{item.text}</animated.div>)
+
+
+    2.Toggle
+        item = false
+        key = null
+        return item && {animated.div...}
