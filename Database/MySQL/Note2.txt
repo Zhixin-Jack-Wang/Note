@@ -1,0 +1,101 @@
+#Sub Query
+    
+    //copy table, constraints not carrying over(ie. PM,AI)
+    CREATE TABLE orders_archived AS
+    SELECT *
+    FROM orders
+
+    //SELECT as a sub query to INSERT
+    INSERT INTO orders_archived
+    SELECT *
+    FROM orders
+    WHERE order_date > '2015-01-01'
+
+    //SELECT as a sub query to UPDATE
+    UPDATE <TABLE>
+    SET ...
+    //more than one result
+    WHERE client_id IN
+                        (SELECT ...)
+    //one result
+    WHERE client_id = (SELECT...)   
+
+    //subquery in SELECT clause
+    SELECT
+        first_name,
+        (SELECT AVG(total) FROM table) as average,
+        total - SELECT(average) as difference
+
+    //subquery in FROM clause, must give an alias even if you are not going to use it
+        ...
+        FROM(SELECT...)
+        AS ...
+
+#Update multiple records
+    disable safe update
+    UPDATE <TABLE>
+    SET ....
+    WHERE client_id in (3,4)
+
+#Aggregate Function
+    //operate on NOT NULL values, eg.COUNT(invoice_total) = 16, COUNT(*) = 20, with 4 NULL values in invoice_total column
+    COUNT()
+    MAX()
+    MIN()
+    AVG()
+    //can do operation inside parenthesis, eg. SUM(total*1.1)
+    SUM()
+
+#GROUP BY using multiple columns
+    GROUP BY city, state
+    //good practice, group by all the columns you selected from SELECT clause
+#HAVING
+    GROUP BY ...
+    HAVING ...
+
+#ROLLUP operator, only in MYSQL
+    //get the sum of aggregated value, only applied to aggregated value too
+    GROUP BY ... WITH ROLLUP
+    //summary value for each group and the entire result set, use actual column name instead of alias
+        ie. all cities in that state, city, all over
+    GROUP BY city,state WITH ROLLUP
+
+#ALL keyword
+        //compare to all values returned
+        WHERE value > ALL(SELECT ...)
+
+#ANY keyword
+    //match any of the values returned
+    WHERE value in ANY(SELECT ...)
+
+#Correlated subquries
+    //reference to what's outside of the subquery
+    FROM table t WHERE(SELECT .. FROM table WHERE t.id = id)
+
+#EXISTS
+    //using correlated subquery, does not return a result set to the outer query, better performance than IN operator
+    SELECT * FROM table t WHERE EXISTS(SELECT .. FROM table WHERE t.id = id)
+
+#Numeric Function
+    TRUNC(n,d)
+    ROUND(n,d)
+    ABS(n)
+    FLOOR(n)
+    CEILING(n)
+    //between 0 and 1
+    RAND()
+
+#String Function
+LENGTH()
+UPPER()
+LOWER()
+//LEFT TRIM
+LTRIM()
+RTRIM()
+TRIM()
+//return a few characters from the left of the String
+LEFT()
+RIGHT()
+SUBSTRING(STR,START POSITION, LENGTH(opt))
+//return the position of the character starting 1, return 0 if not inside 
+LOCATE('q', kindergarten)

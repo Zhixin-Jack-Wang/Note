@@ -55,3 +55,40 @@ WHERE phone IS NOT NULL
         e.reports_to = m.employee_id
 
 #Compound Join Conditions
+    ON
+        //CON1
+    AND
+        //CON2
+
+# Using Clause
+    //equal to ON c.customers_id = o.customers_id, column names must be exactly the same, can have compound condition(USING(customer_id,order_id))
+    JOIN customers c
+        USING (customers_id)
+
+#Natural Join
+    //database engine finds common columns and join 
+    SELECT *
+    FROM orders o 
+   NATURAL JOIN customers c
+
+#UNION
+    use UNION clause to combine records from multiple queries,
+    the column name in the first query decide what shows up in the results
+
+#SELECT and set value
+    //create a column named status and set its value to 'ARCHIVED'  
+    SELECT 'ARCHIVED' AS status
+
+#Column Attribute
+    CHAR(50)--padding with extra space
+
+
+#Inserting Hierarchical Rows
+//use LAST_INSERT_ID()
+INSERT INTO orders (customer_id, order_date, status)
+VALUES (1, '2019-01-02', 1);
+
+INSERT INTO order_items
+VALUES
+    (LAST_INSERT_ID(),1,1,2.95),
+    (LAST_INSERT_ID(),1,1,2.95)

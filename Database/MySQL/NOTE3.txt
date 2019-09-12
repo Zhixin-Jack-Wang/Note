@@ -1,0 +1,53 @@
+#Date function
+//return current date and time 0-0-0 0:0:0
+NOW()
+//return current date
+CURDATE()
+//return current time
+CURTIME
+//extract from DATE, return int 
+DAY(NOW())
+YEAR(NOW())
+MONTH(NOW())
+SECOND...
+//return string
+DAYNAME(NOW())
+...
+//EXTRACT CAN BE PORTED TO OTHER SQL SYSTEM
+SELECT EXTRACT(YEAR FROM NOW())
+
+
+#FORMAT DATE
+//lower case 2 digit, upper case full number/name
+SELECT DATE_FORMAT(NOW(),'%d %m %Y');
+//H-HOUR i-minute %p am/pm
+SELECT TIME_FORMAT(NOW(),'%H%i %p');
+
+#Calculating date and time
+//add one year to current date, accept negative value
+SELECT DATE_ADD(NOW(), INTERVAL 1 YEAR)
+DATE_SUB..
+//only return difference in date
+DATEDIFF(d1,d2)
+//time elapse since midnight
+TIME_TO_SEC('09:00')
+//difference
+TIME_TO_SEC('09:30') - TIME_TO_SEC('10:00')
+
+#IFNULL and COALESCE function
+//if return NULL,shows 'NOT ASSIGNED' instead
+IFNULL(shipper_id, 'NOT ASSIGNED')
+//multiple substitute value, shipper_id->comment->'NOT ASSIGNED'
+COALESCE(shipper_id, comment, 'NOT ASSIGNED')
+
+#IF function
+//evaluate the expression, return first or second 
+IF(EXPRESSION, first,second)
+//evaluate multiple expressions use CASE function,  
+CASE 
+    WHEN THEN
+    ... 
+    ELSE 
+END AS ... 
+
+#CREATE VIEW <NAME> AS <SELECT STATEMENT>
