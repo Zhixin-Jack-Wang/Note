@@ -50,4 +50,21 @@ CASE
     ELSE 
 END AS ... 
 
-#CREATE VIEW <NAME> AS <SELECT STATEMENT>
+#VIEW
+    //can be used as a table, does not store data
+    CREATE VIEW <NAME> AS <SELECT STATEMENT>
+#Alter or drop VIEW
+    CREATE OR REPLACE VIEW <VIEWNAME> AS
+    or
+    DROP VIEW <VIEWNAME>
+#UPDATABLE VIEWS, change stuff in VIEW
+    //dont have the following
+        --DISTINCT
+        --Aggregate function,GROUP BY HAVING
+        --UNION
+    //will receive an error when view excludes rows after DELETE OR UPDATE
+    add WITH CHECK OPTION to the end of the view
+#BENEFITS OF USING VIEW
+    -Simplify queries
+    //when tables change, you need to rewrite your queries too, you can just change the view
+    -Restrict access to the data in the underline table

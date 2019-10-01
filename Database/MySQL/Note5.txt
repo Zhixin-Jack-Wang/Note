@@ -1,0 +1,44 @@
+#Variables
+    //User or Session Variables
+    //usually used when procedures have output parameters, last for the entire session
+    SET @invoices_count = 0
+
+    //Local Variables
+    //be free after procedure ends
+    CREATE PROCEDURE get_risk_factor()
+    BEGIN
+        DECLARE risk_factor DECIMAL(9,2) DEFAULT 0;
+        DECLARE invoices_total DECIMAL(9,2);
+        DECLARE invoices_count INT;
+
+        SELECT COUNT(*), SUM(invoice_total)
+        INTO invoice_count, invoice_total
+        FROM invoices;
+        
+        SET risk_factor = invoices_total / invoice_count * 5 ;
+        SELECT risk_factor;
+    END
+
+#FUNCTION
+// can only return a single function
+    CREATE FUNCTION get_risk_factor_for_client
+    (
+        client_id INT
+    )
+    RETURNS INTEGER
+    --attributes, can have multiple attributes
+    --there will be a SELECT statement
+    READS SQL DATA
+    BEGIN
+        ...
+        RETURN IFNULL(risk_factor,0);
+    END
+
+//more attributes
+    --there will be INSERT, UPDATE, DELETE in your function
+    MODIFIES SQL DATA
+    --given the same input return the same output,like a formula
+    DETERMINISTIC 
+
+//DROP
+    DROP FUNCTION IF EXISTS <NAME>

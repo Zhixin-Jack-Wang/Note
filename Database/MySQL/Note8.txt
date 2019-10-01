@@ -1,0 +1,49 @@
+#Transaction
+    //when multiple operations exist, if one fails, the whole change is aborted
+
+    -properties  ACID
+        Atomicity: unbreakable, single unit of work
+        Consistency: database will be in a consistent state
+        Isolation: transactions are isolated from each other, does not affect others
+        Durability: permanent change if succeed
+    
+    -Creation
+        START TRANSACTION;
+        
+        INSERT INTO orders (customer_id, order_date, status)
+        VALUES (1, '2019-01-01',1);
+
+        INSERT INTO order_items
+        VALUES(LAST_INSERT_ID(),1,1,1);
+
+        COMMIT;
+        //manual rollback when data fails the validation
+        ROLLBACK;
+
+#Concurrency
+    -when updating the same row at the same time in different sessions, my sql put  a lock on that target row, so one has to wait
+    for the first transaction to complete
+
+    -problems
+        1.Lost Updates: transaction that commits later will overwrite the changes made by the previous transaction
+        2.Dirty Reads: when uncommitted changes are read by other transactions, Isolation Level 'READ COMMITTED' can prevent it
+        3.Non-repeating/Inconsistent Reads: in a transaction read something twice get different results, Isolation Level 'REPEATABLE
+        READ' enforces consistent reads even if data gets changed by other transactions
+        4.Phantom Reads: data that meets the query condition after updated by another transaction but missed by the transaction earlier
+        Isolation Level 'SERIALIZABLE' makes sure that all changes are made aware to our current transaction, if changes being made is 
+        detected, the current transaction will be suspended until the change is completed
+    
+    -Isolation Level
+        1.READ UNCOMMITTED: Not isolated from each other 
+        2.READ COMMITTED: Only read committed data(solve 2)
+        3.REPEATABLE READ: Multiple reads return the same results(solve 1,2,3), default isolation level
+        4.SERIALIZABLE: puts overheads on the server and impact the performance(solve 1,2,3,4)
+
+    more concurrency(problems)  = better performance = low isolation Level
+    fewer concurrency(problems) =  worse performance = high isolation level
+
+        ~changing isolation level
+            SHOW VARIABLES LIKE 'TRANSACTION_ISOLATION';
+            SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+            SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+            SET GLOBAL TRANSACTION ISOLATION LEVEL SERIALIZABLE;

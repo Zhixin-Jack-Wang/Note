@@ -1,0 +1,27 @@
+#Trigger
+    //A block of SQL code that automatically get executed before or after an insert, update or delete statement
+    enforce data integrity
+
+    DELIMITER $$
+
+    CREATE TRIGGER payments_after_insert
+        --can only modify data other than the target table to avoid infinite loop
+        AFTER INSERT ON payments
+        FOR EACH ROW
+    BEGIN
+        UPDATE invoices
+        --NEW to access the amount of the new payment
+        SET payment_total = payment_total + NEW.amount
+        WHERE invoice_id =  NEW.invoice_id;
+    END $$
+    DELIMITER ;
+
+    //show triggers, LIKE is optional to identify which table the trigger applies to
+    SHOW TRIGGERS LIKE 'payments%'
+
+    //DROP TRIGGER 
+    DROP TRIGGER IF EXISTS payments_after_insert;
+
+    //LOGGING TRIGGER, create a new table called payments_audit, and insert the new entry 
+    INSERT INTO payments_audit
+    VALUES(NEW.client_id, NEW.date, NEW.amount, 'Insert', NOW());

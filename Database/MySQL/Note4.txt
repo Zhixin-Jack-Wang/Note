@@ -1,0 +1,69 @@
+Stored Procedure
+    Used to store and organize SQL
+    Prevent mess code in your main application
+    Faster execution with optimization
+    Data Security
+    Improved security by denying direct access to tables
+
+#Create Stored Procedure 
+    /*mysql exclusive, change delimiter to $$ in order to use semicolon in our stored procedure or use
+    workbench option*/ 
+    DELIMITER $$
+    CREATE PROCEDURE get_clients()
+    BEGIN
+        //body, mysql exclusive use of semicolon
+        SELECT * FROM clients;
+    END$$
+    //change delimiter back to semicolon
+    DELIMITER ;
+
+#call stored Procedure
+    1.use workbench option
+    2.CALL get_clients()
+
+    storing dropping and creating store procedure in a separate SQL file for source control
+    
+#Dropping procedure
+    DROP PROCEDURE IF EXISTS <name of the procedure>
+
+#Parameter, use reference to avoid name clashing
+    CREATE PROCEDURE get_clients(client_id INT)
+    ...
+
+#Set default parameter
+    BEGIN
+        IF state IS NULL THEN 
+            SET state = 'CA'
+        END IF;
+        ...
+
+    //alternative 
+    BEGIN
+        IF state IS NULL THEN
+            SELECT * FROM clients;
+        ELSE
+            SELECT * FROM clients c
+            WHERE c.state = state;
+        END IF;
+        ...
+    //alternative improved
+    BEGIN
+        SELECT * FROM clients c
+        --if state IS NULL, return c.state 
+        WHERE c.state = IFNULL(state, c.state)    
+
+#validation, last resort, keep as minimal as possible
+    IF payment_amout < 0 THEN
+        SIGAL SQLSTATE "22003'
+            SET MESSAGE_TEXT = 'invalid payment amount';
+    END IF;
+
+#output parameters, use only when you have a reason to
+    ...
+    (...,
+        OUT invoice_count INT,
+        OUT invoice_total DECIMAL(9,2)
+    )
+    SELECT COUNT(*), SUM(invoice_total)
+    INTO invoice_count, invoice_total
+    ...

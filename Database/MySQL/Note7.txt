@@ -1,0 +1,30 @@
+#Events
+    A task(or a block of SQL code) that gets executed according to a schedule
+    automate database maintenance task
+
+    //show system variables, searching event related variables in this case
+    SHOW VARIABLES LIKE 'event%';
+    
+    //set the variable
+    SET GLOBAL event_scheduler = OFF
+
+    //CREATION
+    CREATE EVENT yearly_delete_stale_audit_rows
+        --how often
+        ON SCHEDULE
+            --AT '2019-05-01' 
+            EVERY 1 YEAR STARTS '2019-01-01' ENDS '2029-01-01'
+        DO BEGIN
+            DELETE FROM payments_audit
+            WHERE auction_date < NOW() - INTERVAL 1 YEAR 
+
+        END $$
+        DELIMITER ;
+
+    //Viewing,dropping and altering Events
+        SHOW EVENTS LIKE 'yearly%';
+        DROP EVENT IF EXISTS yearly_delete_stale_audit_rows;
+        //syntax similar to creation
+        ALTER EVENT ...
+        ALTER EVENT yearly_delete_stale_audit_rows ENABLE;
+        
